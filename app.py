@@ -1,17 +1,17 @@
 from flask import Flask
 from flask import jsonify, render_template
 from matplotlib.pyplot import imsave
-
-app = Flask(__name__)
 import base64
 from io import BytesIO
-
 import cv2
 import numpy as np
 import requests
 from PIL import Image
 
-# 偏移量
+
+app = Flask(__name__)
+
+
 bias = -1
 
 slide_captcha_url = 'http://api.shuibei.chxj.name/slide-captcha'
@@ -38,6 +38,7 @@ def predict():
     buffer = mark(img, x, y)
 
     return {'value': x, 'image': base64.b64encode(buffer.getbuffer()).decode()}
+    # return {'value': x, 'image': base64.b64encode(buffer.)).decode()}
 
 
 def get_operator(path, url=False, expand=False):
